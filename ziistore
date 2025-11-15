@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Top Up Mobile Legends</title>
+<style>
+/* original user styles */
+body{font-family:'Inter',Arial,sans-serif;background:#0e0e0e;color:#fff;padding:28px;line-height:1.6;}
+.container{width:100%;max-width:560px;margin:0 auto;background:#181818;padding:20px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,0.55);border:1px solid #222;backdrop-filter:blur(6px);}2,h3{font-weight:600;margin-bottom:14px;letter-spacing:.5px;}
+label{font-weight:600;margin-bottom:6px;display:block;font-size:14px;}
+.input-field{box-sizing:border-box;width:100%;margin-bottom:18px;padding:15px;border-radius:12px;border:1px solid #333;background:#222;color:#fff;font-size:15px;transition:.25s;} 
+.input-field:focus{border-color:#ffb300;outline:none;box-shadow:0 0 12px rgba(255,179,0,0.35);} 
+.diamond-item{background:#222;padding:16px;border-radius:12px;margin-bottom:12px;cursor:pointer;transition:.18s;font-size:15px;border:1px solid #333;display:flex;justify-content:space-between;align-items:center;} 
+.diamond-item:hover{transform:scale(1.02);border-color:#ffb300;} 
+.diamond-item.selected{border:2px solid #ffb300;background:#2a2200;box-shadow:0 0 14px rgba(255,179,0,0.4);} 
+.tab{padding:10px 16px;background:#222;border-radius:10px;cursor:pointer;border:1px solid #333;transition:.2s;font-size:14px;font-weight:600;} 
+.tab:hover{transform:scale(1.04);border-color:#ffb300;} 
+.tab.active{border:2px solid #ffb300;background:#2c2400;box-shadow:0 0 10px rgba(255,179,0,0.35);} 
+button{width:100%;background:linear-gradient(135deg,#ff9800,#ffb300);color:white;padding:15px;border:none;border-radius:14px;margin-top:22px;font-size:17px;font-weight:600;cursor:pointer;transition:.25s;box-shadow:0 6px 16px rgba(0,0,0,0.4);} 
+button:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(255,179,0,0.45);} 
+select{width:100%;padding:15px;border-radius:12px;border:1px solid #333;background:#222;color:white;font-size:15px;margin-top:5px;appearance:none;cursor:pointer;transition:.25s;} 
+select:focus{border-color:#ffb300;box-shadow:0 0 14px rgba(255,179,0,0.55);} 
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;} 
+.pay-card{background:#222;padding:16px;border-radius:14px;border:1px solid #333;text-align:center;cursor:pointer;font-size:15px;transition:.25s;box-shadow:0 4px 14px rgba(0,0,0,0.35);} 
+.pay-card:hover{transform:scale(1.05);border-color:#ffb300;} 
+.pay-card.active{border:2px solid #ffb300;background:#2d2400;box-shadow:0 0 16px rgba(255,179,0,0.45);} 
+.pay-category{background:#222;padding:16px;border-radius:14px;border:1px solid #333;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:600;transition:.25s;box-shadow:0 4px 14px rgba(0,0,0,0.35);} 
+.pay-category:hover{border-color:#ffb300;} 
+.payment-options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;} 
+.payment-btn{background:#222;padding:14px;border-radius:12px;border:1px solid #333;text-align:center;cursor:pointer;font-size:15px;font-weight:600;transition:.25s;box-shadow:0 4px 12px rgba(0,0,0,0.35);}
+.payment-btn.active{border:2px solid #ffb300;background:#2a2200;box-shadow:0 0 12px rgba(255,179,0,0.45);} 
+.payment-btn:hover{transform:scale(1.04);border-color:#ffb300;} 
+@media (max-width: 480px) {
+  body { padding: 16px; }
+  .container { padding: 20px; }
+  .tab { flex: 1; text-align:center; font-size:13px; padding:10px 0; }
+  .pay-methods { grid-template-columns: 1fr 1fr; gap:10px; }
+  .diamond-item{font-size:14px;padding:13px;}
+}
+@media (max-width: 480px){body{padding:15px;} .container{padding:15px;} .socials{flex-direction:column;gap:10px;} .category-page{grid-template-columns:1fr;} .notif{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#222;padding:14px 18px;border-radius:12px;border:1px solid #333;box-shadow:0 6px 16px rgba(0,0,0,0.45);display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;z-index:9999;width:90%;max-width:360px;justify-content:center;}}
+</style>
+</head>
+<body>
+<div style="position:fixed; top:20px; right:20px; z-index:9999; display:flex; gap:10px;">
+  <button onclick="setMobileMode()" style="padding:10px 14px; border-radius:10px; border:none; background:#ffb300; color:#000; font-weight:600; cursor:pointer;">Mobile</button>
+  <button onclick="setDesktopMode()" style="padding:10px 14px; border-radius:10px; border:none; background:#444; color:#fff; font-weight:600; cursor:pointer;">Desktop</button>
+</div>
+  <div style="text-align:center; margin-top:20px; margin-bottom:10px;">
+  <img src="https://i.ibb.co.com/LDx7hgL4/cfc7e0d2-8c5d-4f79-aa82-bbf712621dab.png" alt="ZIISTORE" style="width:260px;max-width:85%;filter:drop-shadow(0 0 18px rgba(255,170,0,0.45));border-radius:12px;">
+</div>
+<!-- FULL USER HTML CONTENT BELOW -->
+<div class="container">
+<h2>Top Up Mobile Legends</h2>
+<label>Username (ID Server)</label>
+<small style="color:#bbb;font-size:12px;display:block;margin-bottom:8px;">Masukkan ID game Anda, contoh: 12345678 (1234)</small>
+<input id="uid" type="text" placeholder="Masukkan ID Server Anda" class="input-field">
+<label>No Whatsapp</label>
+<input id="wa" type="text" placeholder="Masukkan nomor Whatsapp" class="input-field">
+<label>Email</label>
+<input id="email" type="email" placeholder="Masukkan email Anda" class="input-field">
+<h3>Pilih Kategori</h3>
+<div style="display:flex;gap:8px;margin-bottom:15px;">
+<div class="tab" data-tab="diamonds">Diamond</div>
+<div class="tab" data-tab="special">Special</div>
+<div class="tab" data-tab="weekly">WDP</div>
+<div class="tab" data-tab="first">First Top Up</div>
+</div>
+<h3 id="listTitle" style="display:none;">List Item</h3>
+<div class="diamond-list" data-tab-content="diamonds" style="display:none;">
+<div class="diamond-item" data-price="1815">5 Diamonds - Rp 1.815</div>
+<div class="diamond-item" data-price="3383">10 Diamonds - Rp 3.383</div>
+<div class="diamond-item" data-price="5888">19 Diamonds - Rp 5.888</div>
+<div class="diamond-item" data-price="9851">33 Diamonds - Rp 9.851</div>
+<div class="diamond-item" data-price="15261">54 Diamonds - Rp 15.261</div>
+<div class="diamond-item" data-price="20112">71 Diamonds - Rp 20.112</div>
+<div class="diamond-item" data-price="28171">98 Diamonds - Rp 28.171</div>
+<div class="diamond-item" data-price="35209">128 Diamonds - Rp 35.209</div>
+<div class="diamond-item" data-price="65121">240 Diamonds - Rp 65.121</div>
+<div class="diamond-item" data-price="75332">277 Diamonds - Rp 75.332</div>
+<div class="diamond-item" data-price="81340">300 Diamonds - Rp 81.340</div>
+<div class="diamond-item" data-price="110000">370 Diamonds - Rp 99.785</div>
+<div class="diamond-item" data-price="120300">444 Diamonds - Rp 120.300</div>
+<div class="diamond-item" data-price="145467">518 Diamonds - Rp 145.467</div>
+<div class="diamond-item" data-price="151634">568 Diamonds - Rp 151.634</div>
+<div class="diamond-item" data-price="190426">716 Diamonds - Rp 190.426</div>
+<div class="diamond-item" data-price="203413">750 Diamonds - Rp 203.413</div>
+<div class="diamond-item" data-price="249301">966 Diamonds - Rp 249.301</div>
+<div class="diamond-item" data-price="287557">1.048 Diamonds - Rp 287.557</div>
+<div class="diamond-item" data-price="317370">1.220 Diamonds - Rp 317.370</div>
+<div class="diamond-item" data-price="409152">1.506 Diamonds - Rp 409.152</div>
+<div class="diamond-item" data-price="496833">2.010 Diamonds - Rp 496.833</div>
+<div class="diamond-item" data-price="610765">2.380 Diamonds - Rp 610.765</div>
+<div class="diamond-item" data-price="647014">2.578 Diamonds - Rp 647.014</div>
+<div class="diamond-item" data-price="736486">2.855 Diamonds - Rp 736.486</div>
+<div class="diamond-item" data-price="888823">3.423 Diamonds - Rp 888.823</div>
+<div class="diamond-item" data-price="991145">4.020 Diamonds - Rp 991.145</div>
+<div class="diamond-item" data-price="1189945">4.830 Diamonds - Rp 1.189.945</div>
+<div class="diamond-item" data-price="1436444">5.796 Diamonds - Rp 1.436.444</div>
+<div class="diamond-item" data-price="1622214">6.536 Diamonds - Rp 1.622.214</div>
+<div class="diamond-item" data-price="1948640">7.685 Diamonds - Rp 1.948.640</div>
+<div class="diamond-item" data-price="2180533">8.772 Diamonds - Rp 2.180.533</div>
+<div class="diamond-item" data-price="2430312">9.660 Diamonds - Rp 2.430.312</div>
+</div>
+<div class="special-list" data-tab-content="special" style="display:none;">
+<div class="diamond-item" data-price="81975">Starlight Plus Card (Delay 8 Hari) – Rp 81.975</div>
+<div class="diamond-item" data-price="152812">Twilight Pass – Rp 152.812</div>
+</div>
+<div class="weekly-list" data-tab-content="weekly" style="display:none;">
+<div class="diamond-item" data-price="29358">Weekly Diamond Pass FAST – Rp 29.358</div>
+<div class="diamond-item" data-price="58339">2x Weekly Diamond Pass – Rp 58.339</div>
+<div class="diamond-item" data-price="87008">3x Weekly Diamond Pass – Rp 87.008</div>
+<div class="diamond-item" data-price="115677">4x Weekly Diamond Pass – Rp 115.677</div>
+<div class="diamond-item" data-price="145346">5x Weekly Diamond Pass – Rp 145.346</div>
+</div>
+<div class="first-list" data-tab-content="first" style="display:none;">
+<div class="diamond-item" data-price="16552">100 (50+50) Diamonds – Rp 16.552</div>
+<div class="diamond-item" data-price="47448">300 (150+150) Diamonds – Rp 47.448</div>
+<div class="diamond-item" data-price="78039">500 (250+250) Diamonds – Rp 78.039</div>
+<div class="diamond-item" data-price="156180">1000 (500+500) Diamonds – Rp 156.180</div>
+</div>
+<h3 style="margin-top:20px;">Metode Pembayaran</h3>
+<div class="pay-category" id="payCategory">
+  <span>Pilih Pembayaran</span>
+  <span class="arrow">&#9656;</span>
+</div>
+<div id="payOptions" style="display:none;" class="payment-options">
+  <div class="payment-btn" data-pay="QRIS">QRIS</div>
+  <div class="payment-btn" data-pay="Seabank">Seabank</div>
+  <div class="payment-btn" data-pay="Jago">Jago</div>
+  <div class="payment-btn" data-pay="Dana">Dana</div>
+  <div class="payment-btn" data-pay="Gopay">Gopay</div>
+  <div class="payment-btn" data-pay="Ovo">OVO</div>
+  <div class="payment-btn" data-pay="LinkAja">LinkAja</div>
+</div>
+  
+  <button id="orderBtn" style="width:100%;background:#ff7b00;border-radius:12px;padding:14px;font-size:16px;font-weight:600;margin-top:18px;cursor:pointer;">Pesan Sekarang</button>
+</div>
+<div style="background:linear-gradient(145deg,#1a1a1a,#111);margin:35px auto 0 auto;padding:28px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,0.55);max-width:560px;border:1px solid #262626;backdrop-filter:blur(6px);">
+<h3>Cara Top Up Diamond Mobile Legends Di ZiiStore :</h3>
+<ol style="color:#bbb;font-size:14px;line-height:1.6;margin-top:10px;">
+<li>Masukkan Data Akun</li>
+<li>Masukkan No WhatsApp &amp; Email</li>
+<li>Pilih Nominal</li>
+<li>Pilih Pembayaran</li>
+<li>Klik Pesan Sekarang Maka Otomatis Diarahin Ke Whatsapp Admin</li>
+<li>Note Ya Ini Jatuhnya Sistem Jual Di Whatsapp Karena Proses Manual Dari Admin</li>
+<li>Dukung Terus Biar Makin Berkembang ZiiStore</li>
+</ol>
+</div>
+</div>
+<script>
+/* original JS pasted unchanged */
+const tabs = document.querySelectorAll('.tab');
+const lists = document.querySelectorAll('[data-tab-content]');
+const title = document.getElementById('listTitle');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = document.querySelector(`[data-tab-content="${tab.dataset.tab}"]`);
+    if (!target) return;
+    const isOpen = target.style.display === 'block';
+    lists.forEach(l => l.style.display = 'none');
+    tabs.forEach(t => t.classList.remove('active'));
+    if (!isOpen) {
+      target.style.display = 'block';
+      tab.classList.add('active');
+      title.style.display = 'block';
+    } else {
+      const anyOpen = [...lists].some(l => l.style.display === 'block');
+      title.style.display = anyOpen ? 'block' : 'none';
+    }
+  });
+});
+let selectedDiamond = null;
+const diamondItems = document.querySelectorAll('.diamond-item');
+diamondItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const already = item.classList.contains('selected');
+    diamondItems.forEach(i => i.classList.remove('selected'));
+    if (already) {
+      selectedDiamond = null;
+      return;
+    }
+    item.classList.add('selected');
+    selectedDiamond = { name: item.innerText.trim(), price: item.dataset.price };
+  });
+});
+function togglePay() {
+  const payOptions = document.getElementById('payOptions');
+  const arrow = document.querySelector('.pay-category .arrow');
+  if (!payOptions) return;
+  const isHidden = payOptions.style.display === 'none' || payOptions.style.display === '';
+  payOptions.style.display = isHidden ? 'grid' : 'none';
+  if (arrow) arrow.style.transform = isHidden ? 'rotate(90deg)' : 'rotate(0deg)';
+}
+const payCategory = document.getElementById('payCategory');
+if (payCategory) payCategory.addEventListener('click', togglePay);
+const paymentBtns = document.querySelectorAll('.payment-btn');
+let selectedPay = null;
+paymentBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const already = btn.classList.contains('active');
+    paymentBtns.forEach(b => b.classList.remove('active'));
+    if (already) {
+      selectedPay = null;
+      return;
+    }
+    btn.classList.add('active');
+    selectedPay = btn.dataset.pay;
+  });
+});
+
+const orderBtn = document.getElementById('orderBtn');
+if (orderBtn) {
+  orderBtn.addEventListener('click', () => {
+    const uid = document.getElementById('uid').value.trim();
+    const wa = document.getElementById('wa').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!uid) { alert('Mohon masukkan ID Server (username) terlebih dahulu.'); return; }
+    if (!wa) { alert('Mohon masukkan nomor WhatsApp terlebih dahulu.'); return; }
+    if (!email) { alert('Mohon masukkan email terlebih dahulu.'); return; }
+    if (!selectedDiamond) { alert('Pilih item (diamond/produk) terlebih dahulu.'); return; }
+    if (!selectedPay) { alert('Pilih metode pembayaran terlebih dahulu.'); return; }
+
+    const orderId = "ZII-ML-" + Math.floor(10000 + Math.random() * 90000);
+
+    if (!confirm(`Konfirmasi Pesanan:
+
+ID Pesanan: ${orderId}
+Username: ${uid}
+No WA: ${wa}
+Email: ${email}
+Item: ${selectedDiamond.name}
+Harga: Rp ${Number(selectedDiamond.price).toLocaleString()}
+Metode Pembayaran: ${selectedPay}
+
+Klik OK untuk melanjutkan ke WhatsApp`)) {
+      return;
+    }
+
+    orderBtn.innerText = "Memproses...";
+    orderBtn.style.opacity = "0.6";
+    orderBtn.style.pointerEvents = "none";
+
+    setTimeout(() => {
+      const adminNumber = '6287720254002';
+      const msg = `Halo admin, saya ingin melakukan pemesanan:%0A%0A` +
+        `ID Pesanan: ${orderId}%0A` +
+        `Username: ${uid}%0A` +
+        `No WA: ${wa}%0A` +
+        `Email: ${email}%0A` +
+        `Item: ${selectedDiamond.name}%0A` +
+        `Harga: Rp ${Number(selectedDiamond.price).toLocaleString()}%0A` +
+        `Metode Pembayaran: ${selectedPay}`;
+
+      navigator.clipboard.writeText(`BUKTI TRANSFER WAJIB SESUAI FORMAT:
+
+ID Pesanan: ${orderId}
+Nama: ${uid}
+Item: ${selectedDiamond.name}
+Total: Rp ${Number(selectedDiamond.price).toLocaleString()}`);
+
+      window.location.href = `https://wa.me/${adminNumber}?text=${msg}`;
+
+      setTimeout(() => {
+        orderBtn.innerText = "Pesan Sekarang";
+        orderBtn.style.opacity = "1";
+        orderBtn.style.pointerEvents = "auto";
+      }, 1500);
+
+    }, 800);
+  });
+}
+
+document.addEventListener("click", function (e) {
+  const payOptions = document.getElementById("payOptions");
+  const payCat = document.getElementById("payCategory");
+  if (!payOptions || !payCat) return;
+  if (!payCat.contains(e.target) && !payOptions.contains(e.target)) {
+    payOptions.style.display = "none";
+    const arrow = document.querySelector(".pay-category .arrow");
+    if (arrow) arrow.style.transform = "rotate(0deg)";
+  }
+});
+</script>
+<!-- SOSIAL MEDIA SECTION -->
+<div style="max-width:560px;margin:25px auto 0 auto;text-align:center;padding:20px;background:#181818;border-radius:16px;border:1px solid #262626;box-shadow:0 6px 20px rgba(0,0,0,0.45);">
+  <h3 style="margin-bottom:14px;">Ikuti Sosial Media Kami</h3>
+  <div style="display:flex;justify-content:center;gap:18px;">
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/ziistore.co" target="_blank"
+      style="width:55px;height:55px;border-radius:50%;background:#222;display:flex;
+      align-items:center;justify-content:center;border:1px solid #333;transition:.25s;">
+      <img src="https://i.ibb.co.com/v4xFhM11/instagram.png" 
+           style="width:32px;height:32px;object-fit:contain;">
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@ziivora._" target="_blank"
+      style="width:55px;height:55px;border-radius:50%;background:#222;display:flex;
+      align-items:center;justify-content:center;border:1px solid #333;transition:.25s;">
+      <img src="https://i.ibb.co.com/jkJzKZt1/tiktok.png" 
+           style="width:30px;height:30px;object-fit:contain;">
+    </a>
+
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@ZiiVora" target="_blank"
+      style="width:55px;height:55px;border-radius:50%;background:#222;display:flex;
+      align-items:center;justify-content:center;border:1px solid #333;transition:.25s;">
+      <img src="https://i.ibb.co.com/BH4Y8H6K/youtube.png" 
+           style="width:32px;height:32px;object-fit:contain;">
+    </a>
+
+  </div>
+</div>
+
+<div id="firstNotif" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#1e1e1e;border:1px solid #ffb300;padding:22px;border-radius:14px;max-width:420px;width:100%;position:relative;box-shadow:0 0 18px rgba(255,179,0,0.45);">
+    <div id="closeNotif" style="position:absolute;top:10px;right:12px;font-size:20px;cursor:pointer;font-weight:700;color:#ffb300;">✕</div>
+    <h3 style="margin-bottom:10px;color:#ffb300;">Peringatan‼️</h3>
+    <p style="font-size:14px;color:#ddd;line-height:1.5;">
+      Item ini hanya bisa dibeli 1x. Jika kamu sudah pernah membeli item ini, maka kamu tidak dapat membeli lagi.<br><br>
+      Jika Kamu sudah pernah melakukan pembelian produk ini, Kamu hanya akan mendapatkan Diamond sebagai berikut:<br><br>
+      100 (50+50) = <b>50 Diamonds</b><br>
+      300 (150+150) = <b>150 Diamonds</b><br>
+      500 (250+250) = <b>250 Diamonds</b><br>
+      1000 (500+500) = <b>500 Diamonds</b>
+    </p>
+  </div>
+</div>
+<!-- Consolidated notification handlers + Twilight Notif -->
+<div id="twilightNotif" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#1e1e1e;border:1px solid #ffb300;padding:22px;border-radius:14px;max-width:420px;width:100%;position:relative;box-shadow:0 0 18px rgba(255,179,0,0.45);">
+    <div id="closeTwilightNotif" style="position:absolute;top:10px;right:12px;font-size:20px;cursor:pointer;font-weight:700;color:#ffb300;">✕</div>
+    <h3 style="margin-bottom:10px;color:#ffb300;">Peringatan</h3>
+    <p style="font-size:14px;color:#ddd;line-height:1.5;">Twilight Pass hanya bisa dibeli <b>1x per akun</b>.</p>
+  </div>
+</div>
+<script>
+(function(){
+  // First Top Up notif
+  const firstTab = document.querySelector('.tab[data-tab="first"]');
+  const firstNotif = document.getElementById('firstNotif');
+  const closeNotif = document.getElementById('closeNotif');
+  if (firstTab && firstNotif) {
+    firstTab.addEventListener('click', () => { firstNotif.style.display = 'flex'; });
+  }
+  if (closeNotif && firstNotif) {
+    closeNotif.addEventListener('click', () => { firstNotif.style.display = 'none'; });
+  }
+
+  // WDP notif
+  const wdpTab = document.querySelector('.tab[data-tab="weekly"]');
+  const wdpNotif = document.getElementById('wdpNotif');
+  const closeWdp = document.getElementById('closeWdpNotif');
+  if (wdpTab && wdpNotif) {
+    wdpTab.addEventListener('click', () => { wdpNotif.style.display = 'flex'; });
+  }
+  if (closeWdp && wdpNotif) {
+    closeWdp.addEventListener('click', () => { wdpNotif.style.display = 'none'; });
+  }
+
+  // Twilight Pass notif - attach to special-list item (safe selector)
+  const twilightBtn = document.querySelector('.special-list .diamond-item[data-price="152812"]');
+  const twilightNotif = document.getElementById('twilightNotif');
+  const closeTwilight = document.getElementById('closeTwilightNotif');
+  if (twilightBtn) {
+    // ensure pointer cursor
+    twilightBtn.style.cursor = 'pointer';
+    twilightBtn.addEventListener('click', () => {
+      if (twilightNotif) twilightNotif.style.display = 'flex';
+    });
+  }
+  if (closeTwilight && twilightNotif) {
+    closeTwilight.addEventListener('click', () => { twilightNotif.style.display = 'none'; });
+  }
+})();
+</script>
+<!-- WDP Notification -->
+<div id="wdpNotif" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+<div style="background:#1e1e1e;border:1px solid #ffb300;padding:22px;border-radius:14px;max-width:420px;width:100%;position:relative;box-shadow:0 0 18px rgba(255,179,0,0.45);">
+<div id="closeWdpNotif" style="position:absolute;top:10px;right:12px;font-size:20px;cursor:pointer;font-weight:700;color:#ffb300;">✕</div>
+<h3 style="color:#ffb300;">⚠️ Warning Harap Dibaca</h3>
+<p style="font-size:14px;color:#ddd;line-height:1.6;">
+Informasi Penting Sebelum Pembelian Weekly Diamond Pass:<br><br>
+1. Weekly Pass hanya bisa dibeli maksimal 70 hari / 10x WDP (0/10). Pastikan cek ketersediaan WDP di akun sebelum melakukan pembayaran.<br><br>
+2. Kuota pembelian: Perhatikan kuota tersedia di akun game kamu. Contoh: (4/10) berarti Anda dapat membeli 4 kali lagi, (0/10) berarti sudah MAX.<br><br>
+3. Setiap 1x Weekly Diamond Pass akan menyelesaikan misi topup 100 dan klaim 80 Diamonds (langsung masuk ke sistem, bukan di Saving Box).<br><br>
+4. Jika membeli lebih dari batas limit dan terjadi bug (Weekly tidak masuk).<br><br>
+5. Jika sudah pergantian hari dan Weekly Pass lebih dari batas limit / bug, maka tidak bisa di-refund karena sesuai dengan S&K provider.
+</p>
+</div>
+</div>
+<script>
+const wdpTab=document.querySelector('.tab[data-tab="weekly"]');
+const wdpNotif=document.getElementById('wdpNotif');
+const closeWdp=document.getElementById('closeWdpNotif');
+wdpTab.addEventListener('click',()=>{wdpNotif.style.display='flex';});
+closeWdp.addEventListener('click',()=>{wdpNotif.style.display='none';});
+</script>
+
+<script>
+function setMobileMode(){
+  document.body.style.maxWidth='390px';
+  document.body.style.margin='0 auto';
+  document.body.style.border='1px solid #444';
+  document.body.style.borderRadius='18px';
+  document.body.style.background='#000';
+
+  const container=document.querySelector('.container');
+  if(container){
+    container.style.width='100%';
+    container.style.margin='10px auto';
+    container.style.padding='18px';
+    container.style.boxSizing='border-box';
+  }
+}
+function setDesktopMode(){
+  document.body.style.maxWidth='100%';
+  document.body.style.margin='';
+  document.body.style.border='';
+  document.body.style.borderRadius='';
+
+  const container=document.querySelector('.container');
+  if(container){
+    container.style.width='';
+    container.style.margin='auto';
+    container.style.padding='20px';
+  }
+}
+</script>
+</body>
+</html>
